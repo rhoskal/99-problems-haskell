@@ -51,7 +51,7 @@ clean: ## Remove artificats
 
 .PHONY: format
 format: ## Format code
-	ormolu --mode=inplace {app,test}/**/*.hs
+	ormolu --mode=inplace {src,test}/**/*.hs
 
 .PHONY: run
 run: ## Run project
