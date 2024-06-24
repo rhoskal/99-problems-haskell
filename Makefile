@@ -51,7 +51,8 @@ clean: ## Remove artificats
 
 .PHONY: format
 format: ## Format code
-	ormolu --mode=inplace {src,test}/**/*.hs
+	# ormolu --mode=inplace {src,test}/**/*.hs
+	ormolu --mode inplace $(find {src,test} -name '*.hs')
 
 .PHONY: run
 run: ## Run project

@@ -1,6 +1,6 @@
 module MyLibSpec (spec) where
 
-import MyLib (myLast)
+import MyLib (lastTwo, myLast)
 import Test.Hspec
 
 spec :: Spec
@@ -9,3 +9,8 @@ spec = do
     myLast [] `shouldBe` (Nothing :: Maybe ())
     myLast ["a"] `shouldBe` (Just "a" :: Maybe String)
     myLast [1, 2, 3] `shouldBe` (Just 3 :: Maybe Int)
+
+  it "[02] Should return the last two elements of a list" $ do
+    lastTwo [] `shouldBe` (Nothing :: Maybe [()])
+    lastTwo [True] `shouldBe` (Nothing :: Maybe [Bool])
+    lastTwo [1,2,3] `shouldBe` (Just [2,3] :: Maybe [Int])
