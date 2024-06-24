@@ -1,4 +1,4 @@
-module MyLib (myLast, lastTwo, elementAt) where
+module MyLib (myLast, lastTwo, elementAt, myLength) where
 
 {- Problem 1
  Write a function that returns the last element of a list.
@@ -25,3 +25,13 @@ elementAt _ [] = Nothing
 elementAt n (x : xs)
   | n == 1 = Just x
   | otherwise = elementAt (n - 1) xs
+
+{- Problem 4
+ Find the number of elements in a list.
+-}
+myLength :: [a] -> Int
+myLength [] = 0
+myLength (_ : xs) = 1 + myLength xs
+
+-- myLength :: [a] -> Int
+-- myLength = foldl (\acc _ -> acc + 1) 0
