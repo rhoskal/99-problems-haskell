@@ -1,4 +1,4 @@
-module MyLib (myLast, lastTwo, elementAt, myLength) where
+module MyLib (myLast, lastTwo, elementAt, myLength, myReverse) where
 
 {- Problem 1
  Write a function that returns the last element of a list.
@@ -35,3 +35,10 @@ myLength (_ : xs) = 1 + myLength xs
 
 -- myLength :: [a] -> Int
 -- myLength = foldl (\acc _ -> acc + 1) 0
+
+{- Problem 5
+ Reverse items in a list
+ Note: the cons operator always prepends an element to a list
+-}
+myReverse :: [a] -> [a]
+myReverse = foldl (\acc x -> x : acc) []

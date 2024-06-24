@@ -1,6 +1,6 @@
 module MyLibSpec (spec) where
 
-import MyLib (elementAt, lastTwo, myLast, myLength)
+import MyLib (elementAt, lastTwo, myLast, myLength, myReverse)
 import Test.Hspec
 
 spec :: Spec
@@ -25,3 +25,8 @@ spec = do
     myLength [] `shouldBe` 0
     myLength [(1 :: Int)] `shouldBe` 1
     myLength [(1 :: Int) .. 10] `shouldBe` 10
+
+  it "[05] Should return the elements in a list reversed" $ do
+    myReverse [] `shouldBe` ([] :: [()])
+    myReverse [1 .. 5] `shouldBe` ([5, 4, 3, 2, 1] :: [Int])
+    myReverse "A man, a plan, a canal, panama!" `shouldBe` ("!amanap ,lanac a ,nalp a ,nam A" :: [Char])
