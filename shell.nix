@@ -14,11 +14,12 @@ let
     pkgs.llvm
     pkgs.nixfmt
     pkgs.ormolu
+    pkgs.haskellPackages.lsp
   ];
 
   hooks = ''
-    mkdir -p .nix-stack
-    export STACK_ROOT=$PWD/.nix-stack
+    mkdir -p .nix-cabal
+    export CABAL_DIR=$PWD/.nix-cabal
   '';
 in pkgs.stdenv.mkDerivation {
   name = "app";
