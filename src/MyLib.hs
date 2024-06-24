@@ -1,4 +1,4 @@
-module MyLib (myLast, lastTwo) where
+module MyLib (myLast, lastTwo, elementAt) where
 
 {- Problem 1
  Write a function that returns the last element of a list.
@@ -16,3 +16,12 @@ lastTwo [] = Nothing
 lastTwo [_] = Nothing
 lastTwo [x, y] = Just [x, y]
 lastTwo (_ : xs) = lastTwo xs
+
+{- Problem 3
+ Find the nth element of a list. The first element in the list is number 1.
+-}
+elementAt :: Int -> [a] -> Maybe a
+elementAt _ [] = Nothing
+elementAt n (x : xs)
+  | n == 1 = Just x
+  | otherwise = elementAt (n - 1) xs
