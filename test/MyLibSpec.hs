@@ -17,6 +17,6 @@ spec = do
 
   it "[03] Should return the nth element of a list" $ do
     elementAt 2 [] `shouldBe` (Nothing :: Maybe ())
-    elementAt (-2) [] `shouldBe` (Nothing :: Maybe ())
+    elementAt (-2) [1, 2] `shouldBe` (Nothing :: Maybe Int)
     elementAt 2 [1, 2] `shouldBe` (Just 2 :: Maybe Int)
-    elementAt 2 ["a", "b", "c", "d", "e"] `shouldBe` (Just "b" :: Maybe String)
+    elementAt 2 ['a'..'e'] `shouldBe` (Just 'b' :: Maybe Char)
