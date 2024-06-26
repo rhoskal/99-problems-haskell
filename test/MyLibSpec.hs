@@ -1,6 +1,13 @@
 module MyLibSpec (spec) where
 
-import MyLib (elementAt, lastTwo, myLast, myLength, myReverse)
+import MyLib
+  ( elementAt,
+    isPalindrome,
+    lastTwo,
+    myLast,
+    myLength,
+    myReverse,
+  )
 import Test.Hspec
 
 spec :: Spec
@@ -30,3 +37,13 @@ spec = do
     myReverse [] `shouldBe` ([] :: [()])
     myReverse [1 .. 5] `shouldBe` ([5, 4, 3, 2, 1] :: [Int])
     myReverse "A man, a plan, a canal, panama!" `shouldBe` ("!amanap ,lanac a ,nalp a ,nam A" :: [Char])
+
+  it "[06] Should return true if a list is a palindrome" $ do
+    isPalindrome ([] :: [Int]) `shouldBe` True
+    isPalindrome ([1] :: [Int]) `shouldBe` True
+    isPalindrome ([1, 2, 3] :: [Int]) `shouldBe` False
+    isPalindrome (["a", "b", "a"] :: [String]) `shouldBe` True
+    isPalindrome ([1, 2, 2, 1] :: [Int]) `shouldBe` True
+    isPalindrome (["x", "a", "m", "a", "x"] :: [String]) `shouldBe` True
+    isPalindrome ("madamimadam" :: [Char]) `shouldBe` True
+    isPalindrome ([1, 2, 4, 8, 16, 8, 4, 2, 1] :: [Int]) `shouldBe` True

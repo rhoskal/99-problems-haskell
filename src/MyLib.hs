@@ -1,4 +1,12 @@
-module MyLib (myLast, lastTwo, elementAt, myLength, myReverse) where
+module MyLib
+  ( myLast,
+    lastTwo,
+    elementAt,
+    myLength,
+    myReverse,
+    isPalindrome,
+  )
+where
 
 {- Problem 1
  Write a function that returns the last element of a list.
@@ -42,3 +50,11 @@ myLength (_ : xs) = 1 + myLength xs
 -}
 myReverse :: [a] -> [a]
 myReverse = foldl (\acc x -> x : acc) []
+
+{- Problem 6
+ Determine if a list is a palindrome.
+-}
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome [] = True
+isPalindrome [_] = True
+isPalindrome xs = (head xs) == (last xs) && (isPalindrome $ tail $ init xs)
