@@ -1,6 +1,6 @@
 # 99 Problems done in Haskell
 
-- [ ] Questions 1 to 10: Lists
+- [x] Questions 1 to 10: Lists
 - [ ] Questions 11 to 20: Lists, continued
 - [ ] Questions 21 to 28: Lists again
 - [ ] Questions 31 to 41: Arithmetic

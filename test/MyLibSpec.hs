@@ -4,6 +4,7 @@ import MyLib
   ( NestedList (..),
     compress,
     elementAt,
+    encode,
     flatten,
     isPalindrome,
     lastTwo,
@@ -66,3 +67,8 @@ spec = do
   it "[09] Should pack/combine duplicates" $ do
     pack (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` ["aa", "b", "cc"] -- remember that String -> [Char]
     pack (['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'] :: [Char]) `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]
+
+  it "[10] Should encode duplicates" $ do
+    encode (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` [(2, 'a'), (1, 'b'), (2, 'c')]
+    encode ("aabcc" :: [Char]) `shouldBe` [(2, 'a'), (1, 'b'), (2, 'c')]
+    encode ([1, 1, 2, 3, 3] :: [Int]) `shouldBe` [(2, 1), (1, 2), (2, 3)]

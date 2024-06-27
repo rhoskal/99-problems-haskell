@@ -9,6 +9,7 @@ module MyLib
     NestedList (..),
     compress,
     pack,
+    encode,
   )
 where
 
@@ -94,3 +95,9 @@ pack (x : xs) =
   let (y, ys) = span (== x) xs
    in (x : y) : pack ys
 
+{- Problem 10
+ Runs the "run-length" encoding data compression algorithm.
+ Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E..
+-}
+encode :: (Eq a) => [a] -> [(Int, a)]
+encode = map (\x -> (length x, head x)) . pack
