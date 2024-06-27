@@ -10,6 +10,7 @@ import MyLib
     myLast,
     myLength,
     myReverse,
+    pack,
   )
 import Test.Hspec
 
@@ -61,3 +62,7 @@ spec = do
     compress (["a", "a", "b", "c", "c"] :: [String]) `shouldBe` ["a", "b", "c"]
     compress (["a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e"] :: [String]) `shouldBe` ["a", "b", "c", "a", "d", "e"]
     compress ("aaaabccaadeeee" :: [Char]) `shouldBe` "abcade"
+
+  it "[09] Should pack/combine duplicates" $ do
+    pack (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` ["aa", "b", "cc"] -- remember that String -> [Char]
+    pack (['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'] :: [Char]) `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]

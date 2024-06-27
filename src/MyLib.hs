@@ -84,3 +84,9 @@ compress :: (Eq a) => [a] -> [a]
 compress [] = []
 compress (x : xs) = [x] ++ (compress $ dropWhile (== x) xs)
 
+{- Problem 9
+ Pack consecutive duplicates of list elements into sublists.
+-}
+-- pack :: [a] -> [a]
+-- pack = undefined
+
