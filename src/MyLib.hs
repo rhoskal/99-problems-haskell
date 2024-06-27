@@ -7,6 +7,7 @@ module MyLib
     isPalindrome,
     flatten,
     NestedList (..),
+    compress,
   )
 where
 
@@ -75,3 +76,11 @@ flatten (List (x : xs)) = flatten x ++ flatten (List xs)
 
 -- flatten (Elem x) = [x]
 -- flatten (List x) = concatMap flatten x
+
+{- Problem 8
+ Eliminate consecutive duplicates of list elements.
+-}
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress (x : xs) = [x] ++ (compress $ dropWhile (== x) xs)
+

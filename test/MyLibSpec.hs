@@ -2,6 +2,7 @@ module MyLibSpec (spec) where
 
 import MyLib
   ( NestedList (..),
+    compress,
     elementAt,
     flatten,
     isPalindrome,
@@ -55,3 +56,7 @@ spec = do
     flatten (List [List [Elem 2, Elem 3], Elem 1] :: NestedList Int) `shouldBe` [2, 3, 1]
     flatten (List [Elem "a", List [Elem "b", List [Elem "c", Elem "d"], Elem "e"]] :: NestedList String) `shouldBe` ["a", "b", "c", "d", "e"]
     flatten (List [List [List [Elem "a"]]] :: NestedList String) `shouldBe` ["a"]
+
+  it "[08] Should remove consecutive duplicates" $ do
+    compress (["a", "a", "b", "c", "c"] :: [String]) `shouldBe` ["a", "b", "c"]
+    compress (["a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e"] :: [String]) `shouldBe` ["a", "b", "c", "a", "d", "e"]
