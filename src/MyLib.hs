@@ -5,6 +5,8 @@ module MyLib
     myLength,
     myReverse,
     isPalindrome,
+    flatten,
+    NestedList (..),
   )
 where
 
@@ -58,3 +60,18 @@ isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome [] = True
 isPalindrome [_] = True
 isPalindrome xs = (head xs) == (last xs) && (isPalindrome $ tail $ init xs)
+
+{- Problem 7
+ Flatten a nested list structure.
+ Note: We have to define a new data type, because lists in Haskell are homogeneous.
+ [1, [2, [3, 4], 5]] is a type error. Therefore, we must have a way of representing a list that may (or may not) be nested.
+-}
+data NestedList a = Elem a | List [NestedList a]
+
+flatten :: NestedList a -> [a]
+flatten (Elem x) = [x]
+flatten (List []) = []
+flatten (List (x : xs)) = flatten x ++ flatten (List xs)
+
+-- flatten (Elem x) = [x]
+-- flatten (List x) = concatMap flatten x

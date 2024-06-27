@@ -1,7 +1,9 @@
 module MyLibSpec (spec) where
 
 import MyLib
-  ( elementAt,
+  ( NestedList (..),
+    elementAt,
+    flatten,
     isPalindrome,
     lastTwo,
     myLast,
@@ -47,3 +49,9 @@ spec = do
     isPalindrome (["x", "a", "m", "a", "x"] :: [String]) `shouldBe` True
     isPalindrome ("madamimadam" :: [Char]) `shouldBe` True
     isPalindrome ([1, 2, 4, 8, 16, 8, 4, 2, 1] :: [Int]) `shouldBe` True
+
+  it "[07] Should return a flattened list" $ do
+    flatten (List [Elem 1, List [Elem 2, Elem 3]] :: NestedList Int) `shouldBe` [1, 2, 3]
+    flatten (List [List [Elem 2, Elem 3], Elem 1] :: NestedList Int) `shouldBe` [2, 3, 1]
+    flatten (List [Elem "a", List [Elem "b", List [Elem "c", Elem "d"], Elem "e"]] :: NestedList String) `shouldBe` ["a", "b", "c", "d", "e"]
+    flatten (List [List [List [Elem "a"]]] :: NestedList String) `shouldBe` ["a"]
