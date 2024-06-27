@@ -8,6 +8,7 @@ module MyLib
     flatten,
     NestedList (..),
     compress,
+    pack,
   )
 where
 
@@ -87,6 +88,9 @@ compress (x : xs) = [x] ++ (compress $ dropWhile (== x) xs)
 {- Problem 9
  Pack consecutive duplicates of list elements into sublists.
 -}
--- pack :: [a] -> [a]
--- pack = undefined
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack (x : xs) =
+  let (y, ys) = span (== x) xs
+   in (x : y) : pack ys
 
