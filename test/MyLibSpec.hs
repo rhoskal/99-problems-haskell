@@ -60,3 +60,4 @@ spec = do
   it "[08] Should remove consecutive duplicates" $ do
     compress (["a", "a", "b", "c", "c"] :: [String]) `shouldBe` ["a", "b", "c"]
     compress (["a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e"] :: [String]) `shouldBe` ["a", "b", "c", "a", "d", "e"]
+    compress ("aaaabccaadeeee" :: [Char]) `shouldBe` "abcade"
