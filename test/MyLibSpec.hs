@@ -1,10 +1,12 @@
 module MyLibSpec (spec) where
 
 import MyLib
-  ( NestedList (..),
+  ( Encoded (..),
+    NestedList (..),
     compress,
     elementAt,
     encode,
+    encodeModified,
     flatten,
     isPalindrome,
     lastTwo,
@@ -72,3 +74,14 @@ spec = do
     encode (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` [(2, 'a'), (1, 'b'), (2, 'c')]
     encode ("aabcc" :: [Char]) `shouldBe` [(2, 'a'), (1, 'b'), (2, 'c')]
     encode ([1, 1, 2, 3, 3] :: [Int]) `shouldBe` [(2, 1), (1, 2), (2, 3)]
+
+  it "[11] Should encode duplicates but modified" $ do
+    encodeModified ("aaaabccaadeeee")
+      `shouldBe` [ MultipleEncode 'a' 4,
+                   SingleEncode 'b',
+                   MultipleEncode 'c' 2,
+                   MultipleEncode 'a' 2,
+                   SingleEncode 'd',
+                   MultipleEncode 'e' 4
+                 ]
+

@@ -10,6 +10,8 @@ module MyLib
     compress,
     pack,
     encode,
+    encodeModified,
+    Encoded (..),
   )
 where
 
@@ -101,3 +103,18 @@ pack (x : xs) =
 -}
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . pack
+
+{- Problem 11
+ Runs the "run-length" encoding data compression algorithm.
+ Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E..
+-}
+encodeModified :: (Eq a) => [a] -> [Encoded a]
+encodeModified =
+  map
+    ( \(count, val) ->
+        if count == 1
+          then SingleEncode val
+          else MultipleEncode val count
+    )
+    . encode
+
