@@ -4,6 +4,7 @@ import MyLib
   ( Encoded (..),
     NestedList (..),
     compress,
+    decodeModified,
     elementAt,
     encode,
     encodeModified,
@@ -76,7 +77,12 @@ spec = do
     encode ([1, 1, 2, 3, 3] :: [Int]) `shouldBe` [(2, 1), (1, 2), (2, 3)]
 
   it "[11] Should encode duplicates but modified" $ do
-    encodeModified ("aaaabccaadeeee")
+    encodeModified ([1, 1, 2, 3, 3] :: [Int])
+      `shouldBe` [ MultipleEncode 1 2,
+                   SingleEncode 2,
+                   MultipleEncode 3 2
+                 ]
+    encodeModified ("aaaabccaadeeee" :: [Char])
       `shouldBe` [ MultipleEncode 'a' 4,
                    SingleEncode 'b',
                    MultipleEncode 'c' 2,
@@ -85,3 +91,19 @@ spec = do
                    MultipleEncode 'e' 4
                  ]
 
+  it "[12] Should decode encoded duplicates" $ do
+    decodeModified
+      [ MultipleEncode 1 2,
+        SingleEncode 2,
+        MultipleEncode 3 2
+      ]
+      `shouldBe` ([1, 1, 2, 3, 3] :: [Int])
+    decodeModified
+      [ MultipleEncode 'a' 4,
+        SingleEncode 'b',
+        MultipleEncode 'c' 2,
+        MultipleEncode 'a' 2,
+        SingleEncode 'd',
+        MultipleEncode 'e' 4
+      ]
+      `shouldBe` ("aaaabccaadeeee" :: [Char])

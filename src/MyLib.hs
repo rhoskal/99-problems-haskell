@@ -11,6 +11,7 @@ module MyLib
     pack,
     encode,
     encodeModified,
+    decodeModified,
     Encoded (..),
   )
 where
@@ -104,6 +105,8 @@ pack (x : xs) =
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . pack
 
+data Encoded a = MultipleEncode a Int | SingleEncode a deriving (Eq, Show)
+
 {- Problem 11
  Runs the "run-length" encoding data compression algorithm.
  Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E..
@@ -118,3 +121,10 @@ encodeModified =
     )
     . encode
 
+{- Problem 12
+ Runs the "run-length" encoding data compression algorithm.
+-}
+decodeModified :: [Encoded a] -> [a]
+decodeModified [] = []
+decodeModified ((SingleEncode val) : xs) = val : decodeModified xs
+decodeModified ((MultipleEncode val count) : xs) = (replicate count val) ++ decodeModified xs
