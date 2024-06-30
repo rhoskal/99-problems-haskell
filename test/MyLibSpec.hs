@@ -7,6 +7,7 @@ import MyLib
     decodeModified,
     elementAt,
     encode,
+    encodeDirect,
     encodeModified,
     flatten,
     isPalindrome,
@@ -107,3 +108,13 @@ spec = do
         MultipleEncode 'e' 4
       ]
       `shouldBe` ("aaaabccaadeeee" :: [Char])
+
+  it "[13] Should encode duplicates directly" $ do
+    encodeDirect "aaaabccaadeeee"
+      `shouldBe` [ MultipleEncode 'a' 4,
+                   SingleEncode 'b',
+                   MultipleEncode 'c' 2,
+                   MultipleEncode 'a' 2,
+                   SingleEncode 'd',
+                   MultipleEncode 'e' 4
+                 ]

@@ -1,18 +1,19 @@
 module MyLib
-  ( myLast,
-    lastTwo,
-    elementAt,
-    myLength,
-    myReverse,
-    isPalindrome,
-    flatten,
+  ( Encoded (..),
     NestedList (..),
     compress,
-    pack,
-    encode,
-    encodeModified,
     decodeModified,
-    Encoded (..),
+    elementAt,
+    encode,
+    encodeDirect,
+    encodeModified,
+    flatten,
+    isPalindrome,
+    lastTwo,
+    myLast,
+    myLength,
+    myReverse,
+    pack,
   )
 where
 
@@ -105,7 +106,10 @@ pack (x : xs) =
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . pack
 
-data Encoded a = MultipleEncode a Int | SingleEncode a deriving (Eq, Show)
+data Encoded a
+  = MultipleEncode a Int
+  | SingleEncode a
+  deriving (Eq, Show)
 
 {- Problem 11
  Runs the "run-length" encoding data compression algorithm.
@@ -128,3 +132,18 @@ decodeModified :: [Encoded a] -> [a]
 decodeModified [] = []
 decodeModified ((SingleEncode val) : xs) = val : decodeModified xs
 decodeModified ((MultipleEncode val count) : xs) = (replicate count val) ++ decodeModified xs
+
+{- Problem 13
+ Run-length encoding of a list (direct solution).
+ Implement the so-called run-length encoding data compression method directly.
+-}
+encodeDirect :: (Eq a) => [a] -> [Encoded a]
+encodeDirect [] = []
+encodeDirect xs =
+  let hd = head xs
+      (matches, rest) = span (== hd) xs
+      encoded =
+        if length matches == 1
+          then SingleEncode hd
+          else MultipleEncode hd (length matches)
+   in encoded : encodeDirect rest
