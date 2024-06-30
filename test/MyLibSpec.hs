@@ -110,7 +110,12 @@ spec = do
       `shouldBe` ("aaaabccaadeeee" :: [Char])
 
   it "[13] Should encode duplicates directly" $ do
-    encodeDirect "aaaabccaadeeee"
+    encodeDirect ([1, 1, 2, 3, 3] :: [Int])
+      `shouldBe` [ MultipleEncode 1 2,
+                   SingleEncode 2,
+                   MultipleEncode 3 2
+                 ]
+    encodeDirect ("aaaabccaadeeee" :: [Char])
       `shouldBe` [ MultipleEncode 'a' 4,
                    SingleEncode 'b',
                    MultipleEncode 'c' 2,
