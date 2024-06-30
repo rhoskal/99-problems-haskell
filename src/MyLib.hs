@@ -3,6 +3,7 @@ module MyLib
     NestedList (..),
     compress,
     decodeModified,
+    duplicate,
     elementAt,
     encode,
     encodeDirect,
@@ -147,3 +148,10 @@ encodeDirect xs =
           then SingleEncode hd
           else MultipleEncode hd (length matches)
    in encoded : encodeDirect rest
+
+{- Problem 14
+ Duplicate each item in a given list.
+-}
+duplicate :: [a] -> [a]
+duplicate [] = []
+duplicate (x : xs) = [x, x] ++ duplicate xs

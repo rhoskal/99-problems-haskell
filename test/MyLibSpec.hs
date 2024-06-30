@@ -5,6 +5,7 @@ import MyLib
     NestedList (..),
     compress,
     decodeModified,
+    duplicate,
     elementAt,
     encode,
     encodeDirect,
@@ -123,3 +124,7 @@ spec = do
                    SingleEncode 'd',
                    MultipleEncode 'e' 4
                  ]
+
+  it "[14] Should duplicate items in a list" $ do
+    duplicate ("abccd" :: [Char]) `shouldBe` "aabbccccdd"
+    duplicate ([1, 2, 3] :: [Int]) `shouldBe` [1, 1, 2, 2, 3, 3]
