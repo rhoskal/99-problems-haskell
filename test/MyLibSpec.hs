@@ -19,6 +19,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    removeAt,
     rotate,
     slice,
     split,
@@ -154,3 +155,7 @@ spec = do
   it "[19] Should rotate a list" $ do
     rotate ['a' .. 'h'] 3 `shouldBe` "defghabc"
     rotate ['a' .. 'h'] (-2) `shouldBe` "ghabcdef"
+
+  it "[20] Should remove nth element" $ do
+    removeAt 2 ['a' .. 'd'] `shouldBe` "acd"
+    removeAt (-1) ['a' .. 'd'] `shouldBe` "abcd"
