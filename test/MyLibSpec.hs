@@ -19,6 +19,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    rotate,
     slice,
     split,
   )
@@ -149,3 +150,7 @@ spec = do
     slice ['a' .. 'k'] 3 7 `shouldBe` "cdefg"
     slice ['a' .. 'k'] 3 1 `shouldBe` ""
     slice ['a' .. 'k'] 3 3 `shouldBe` "c"
+
+  it "[19] Should rotate a list" $ do
+    rotate ['a' .. 'h'] 3 `shouldBe` "defghabc"
+    rotate ['a' .. 'h'] (-2) `shouldBe` "ghabcdef"

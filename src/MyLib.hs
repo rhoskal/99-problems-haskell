@@ -17,6 +17,7 @@ module MyLib
     myReplicate,
     myReverse,
     pack,
+    rotate,
     slice,
     split,
   )
@@ -194,3 +195,11 @@ slice :: [a] -> Int -> Int -> [a]
 slice xs i k
   | k < i = []
   | otherwise = take (k - i + 1) $ drop (i - 1) xs
+
+{- Problem 19
+ Rotate a list n places to the left.
+-}
+rotate :: [a] -> Int -> [a]
+rotate xs n
+  | n < 0 = drop (n + length xs) xs ++ take (n + length xs) xs
+  | otherwise = drop n xs ++ take n xs
