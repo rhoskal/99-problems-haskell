@@ -180,4 +180,6 @@ dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
  Splits a list into two parts; the length of the first part is given.
 -}
 split :: [a] -> Int -> ([a], [a])
-split xs n = (take n xs, drop n xs)
+split xs n
+  | n <= 0 = ([], xs)
+  | otherwise = (take n xs, drop n xs)

@@ -141,4 +141,5 @@ spec = do
     dropEvery ("abcdefghijk" :: [Char]) 3 `shouldBe` "abdeghjk"
 
   it "[17] Should split a given list into 2 parts" $ do
+    split ([1 .. 10] :: [Int]) 0 `shouldBe` ([], [1 .. 10])
     split (['a' .. 'k'] :: [Char]) 3 `shouldBe` ("abc", "defghijk")
