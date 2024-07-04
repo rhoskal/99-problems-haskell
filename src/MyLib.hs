@@ -17,6 +17,7 @@ module MyLib
     myReplicate,
     myReverse,
     pack,
+    split,
   )
 where
 
@@ -174,3 +175,9 @@ myReplicate xs n = foldl (\acc x -> acc ++ repli n x) [] xs
 dropEvery :: [a] -> Int -> [a]
 dropEvery [] _ = []
 dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
+
+{- Problem 17
+ Splits a list into two parts; the length of the first part is given.
+-}
+split :: [a] -> Int -> ([a], [a])
+split xs n = (take n xs, drop n xs)

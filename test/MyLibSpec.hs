@@ -19,6 +19,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    split,
   )
 import Test.Hspec
 
@@ -138,3 +139,6 @@ spec = do
   it "[16] Should drop every nth item from a list" $ do
     dropEvery ([1 .. 7] :: [Int]) 2 `shouldBe` [1, 3, 5, 7]
     dropEvery ("abcdefghijk" :: [Char]) 3 `shouldBe` "abdeghjk"
+
+  it "[17] Should split a given list into 2 parts" $ do
+    split (['a' .. 'k'] :: [Char]) 3 `shouldBe` ("abc", "defghijk")
