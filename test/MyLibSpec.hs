@@ -137,4 +137,4 @@ spec = do
 
   it "[16] Should drop every nth item from a list" $ do
     dropEvery ([1 .. 7] :: [Int]) 2 `shouldBe` [1, 3, 5, 7]
-    dropEvery ("abcdefghik" :: [Char]) 3 `shouldBe` "abdeghk"
+    dropEvery ("abcdefghijk" :: [Char]) 3 `shouldBe` "abdeghjk"
