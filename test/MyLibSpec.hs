@@ -19,6 +19,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    slice,
     split,
   )
 import Test.Hspec
@@ -143,3 +144,8 @@ spec = do
   it "[17] Should split a given list into 2 parts" $ do
     split ([1 .. 10] :: [Int]) 0 `shouldBe` ([], [1 .. 10])
     split (['a' .. 'k'] :: [Char]) 3 `shouldBe` ("abc", "defghijk")
+
+  it "[18] Should slice a list given a range" $ do
+    slice ['a' .. 'k'] 3 7 `shouldBe` "cdefg"
+    slice ['a' .. 'k'] 3 1 `shouldBe` ""
+    slice ['a' .. 'k'] 3 3 `shouldBe` "c"
