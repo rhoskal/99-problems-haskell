@@ -70,8 +70,8 @@ spec = do
     compress ("aaaabccaadeeee" :: [Char]) `shouldBe` "abcade"
 
   it "[09] Should pack/combine duplicates" $ do
-    pack (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` ["aa", "b", "cc"] -- remember that String -> [Char]
-    pack (['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e'] :: [Char]) `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]
+    pack ("aabcc" :: [Char]) `shouldBe` ["aa", "b", "cc"]
+    pack ("aaaabccaadeeee" :: [Char]) `shouldBe` ["aaaa", "b", "cc", "aa", "d", "eeee"]
 
   it "[10] Should encode duplicates" $ do
     encode (['a', 'a', 'b', 'c', 'c'] :: [Char]) `shouldBe` [(2, 'a'), (1, 'b'), (2, 'c')]
