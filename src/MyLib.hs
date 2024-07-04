@@ -10,6 +10,7 @@ module MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    insertAt,
     isPalindrome,
     lastTwo,
     myLast,
@@ -212,3 +213,15 @@ removeAt :: Int -> [a] -> [a]
 removeAt n xs
   | n < 0 = xs
   | otherwise = take (n - 1) xs ++ drop n xs
+
+{- Problem 21
+ Inserts an element at the nth position.
+ Start counting list elements with 0. If the position is larger or equal to
+ the length of the list, insert the element at the end.
+ (The behavior is unspecified if the position is negative.)
+-}
+insertAt :: a -> [a] -> Int -> [a]
+insertAt x xs n
+  | n < 0 = xs
+  | n >= length xs = xs ++ [x]
+  | otherwise = take (n - 1) xs ++ x : drop (n - 1) xs

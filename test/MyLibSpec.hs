@@ -12,6 +12,7 @@ import MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    insertAt,
     isPalindrome,
     lastTwo,
     myLast,
@@ -159,3 +160,8 @@ spec = do
   it "[20] Should remove nth element" $ do
     removeAt 2 ['a' .. 'd'] `shouldBe` "acd"
     removeAt (-1) ['a' .. 'd'] `shouldBe` "abcd"
+
+  it "[21] Should insert at nth position" $ do
+    insertAt 'X' ['a' .. 'd'] 2 `shouldBe` "aXbcd"
+    insertAt 'X' ['a' .. 'd'] (-1) `shouldBe` "abcd"
+    insertAt 'X' ['a' .. 'd'] (99) `shouldBe` "abcdX"
