@@ -13,6 +13,7 @@ module MyLib
     lastTwo,
     myLast,
     myLength,
+    myReplicate,
     myReverse,
     pack,
   )
@@ -155,3 +156,13 @@ encodeDirect xs =
 duplicate :: [a] -> [a]
 duplicate [] = []
 duplicate (x : xs) = [x, x] ++ duplicate xs
+
+{- Problem 15
+ Replicate each item in a given list n number of times.
+-}
+myReplicate :: [a] -> Int -> [a]
+myReplicate [] _ = []
+myReplicate xs n = foldl (\acc x -> acc ++ repli n x) [] xs
+  where
+    repli :: Int -> a -> [a]
+    repli n' = take n' . repeat

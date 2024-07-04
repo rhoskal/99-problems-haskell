@@ -15,6 +15,7 @@ import MyLib
     lastTwo,
     myLast,
     myLength,
+    myReplicate,
     myReverse,
     pack,
   )
@@ -128,3 +129,7 @@ spec = do
   it "[14] Should duplicate items in a list" $ do
     duplicate ("abccd" :: [Char]) `shouldBe` "aabbccccdd"
     duplicate ([1, 2, 3] :: [Int]) `shouldBe` [1, 1, 2, 2, 3, 3]
+
+  it "[15] Should duplicate items in a list n times" $ do
+    myReplicate ("abc" :: [Char]) 3 `shouldBe` "aaabbbccc"
+    myReplicate ([1, 2, 3] :: [Int]) 3 `shouldBe` [1, 1, 1, 2, 2, 2, 3, 3, 3]
