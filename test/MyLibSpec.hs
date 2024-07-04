@@ -5,6 +5,7 @@ import MyLib
     NestedList (..),
     compress,
     decodeModified,
+    dropEvery,
     duplicate,
     elementAt,
     encode,
@@ -133,3 +134,7 @@ spec = do
   it "[15] Should duplicate items in a list n times" $ do
     myReplicate ("abc" :: [Char]) 3 `shouldBe` "aaabbbccc"
     myReplicate ([1, 2, 3] :: [Int]) 3 `shouldBe` [1, 1, 1, 2, 2, 2, 3, 3, 3]
+
+  it "[16] Should drop every nth item from a list" $ do
+    dropEvery ([1 .. 7] :: [Int]) 2 `shouldBe` [1, 3, 5, 7]
+    dropEvery ("abcdefghik" :: [Char]) 3 `shouldBe` "abdeghk"

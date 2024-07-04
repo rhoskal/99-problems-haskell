@@ -3,6 +3,7 @@ module MyLib
     NestedList (..),
     compress,
     decodeModified,
+    dropEvery,
     duplicate,
     elementAt,
     encode,
@@ -166,3 +167,10 @@ myReplicate xs n = foldl (\acc x -> acc ++ repli n x) [] xs
   where
     repli :: Int -> a -> [a]
     repli n' = take n' . repeat
+
+{- Problem 16
+ Drop every nth item in a given list.
+-}
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] _ = []
+dropEvery xs n = take (n - 1) xs ++ dropEvery (drop n xs) n
