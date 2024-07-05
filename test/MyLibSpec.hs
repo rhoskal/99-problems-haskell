@@ -15,6 +15,7 @@ import MyLib
     insertAt,
     isPalindrome,
     lastTwo,
+    lottoSelect,
     myLast,
     myLength,
     myReplicate,
@@ -177,3 +178,5 @@ spec = do
     rndSelect ([1 .. 10] :: [Int]) 3 >>= (\selection -> length selection `shouldBe` 3)
     rndSelect (['a' .. 'z'] :: [Char]) 5 >>= (\selection -> length selection `shouldBe` 5)
 
+  it "[24] should get random selection" $ do
+    lottoSelect 6 49 >>= (\selection -> length selection `shouldBe` 6)

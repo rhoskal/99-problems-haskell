@@ -13,6 +13,7 @@ module MyLib
     insertAt,
     isPalindrome,
     lastTwo,
+    lottoSelect,
     myLast,
     myLength,
     myReplicate,
@@ -252,3 +253,8 @@ rndSelect xs n = do
   rest <- rndSelect xs (n - 1)
   return $ (xs !! rnd) : rest
 
+{- Problem 24
+ Extract n different random numbers from the set 1..M.
+-}
+lottoSelect :: Int -> Int -> IO [Int]
+lottoSelect n max = rndSelect [1 .. max] n
