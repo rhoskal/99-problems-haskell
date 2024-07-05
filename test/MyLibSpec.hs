@@ -23,6 +23,7 @@ import MyLib
     pack,
     range,
     removeAt,
+    rndPermutations,
     rndSelect,
     rotate,
     slice,
@@ -178,5 +179,9 @@ spec = do
     rndSelect ([1 .. 10] :: [Int]) 3 >>= (`shouldBe` 3) . length
     rndSelect (['a' .. 'z'] :: [Char]) 5 >>= (`shouldBe` 5) . length
 
-  it "[24] Should get random selection" $ do
+  it "[24] Should get random lotto selection" $ do
     lottoSelect 6 49 >>= (`shouldBe` 6) . length
+
+  it "[25] Should generate random permutation" $ do
+    rndPermutations (['a' .. 'f'] :: [Char]) >>= (`shouldBe` 6) . length
+    rndPermutations ([1 .. 5] :: [Int]) >>= (`shouldBe` 5) . length

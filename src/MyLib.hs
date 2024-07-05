@@ -21,6 +21,7 @@ module MyLib
     pack,
     range,
     removeAt,
+    rndPermutations,
     rndSelect,
     rotate,
     slice,
@@ -258,3 +259,11 @@ rndSelect xs n = do
 -}
 lottoSelect :: Int -> Int -> IO [Int]
 lottoSelect n m = rndSelect [1 .. m] n
+
+{- Problem 25
+ Generate a random permutation of the elements of a list.
+ Note: this solution does not guarantee uniqueness (distinct elements) from `as`
+-}
+rndPermutations :: [a] -> IO [a]
+rndPermutations [] = return []
+rndPermutations xs = rndSelect xs (length xs)
