@@ -22,6 +22,7 @@ import MyLib
     pack,
     range,
     removeAt,
+    rndSelect,
     rotate,
     slice,
     split,
@@ -171,3 +172,8 @@ spec = do
     range 4 9 `shouldBe` [4 .. 9]
     range 5 1 `shouldBe` []
     range 1 1 `shouldBe` [1]
+
+  it "[23] should get random selection" $ do
+    rndSelect ([1 .. 10] :: [Int]) 3 >>= (\selection -> length selection `shouldBe` 3)
+    rndSelect (['a' .. 'z'] :: [Char]) 5 >>= (\selection -> length selection `shouldBe` 5)
+

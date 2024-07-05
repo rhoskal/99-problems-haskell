@@ -20,11 +20,14 @@ module MyLib
     pack,
     range,
     removeAt,
+    rndSelect,
     rotate,
     slice,
     split,
   )
 where
+
+import System.Random (randomRIO)
 
 {- Problem 1
  Write a function that returns the last element of a list.
@@ -234,4 +237,18 @@ range :: Int -> Int -> [Int]
 range a b
   | b < a = []
   | otherwise = [a] ++ range (a + 1) b
+
 -- range a b = take ((b - a) + 1) $ iterate (+ 1) a
+
+{- Problem 23
+ Extract a given number of randomly selected elements from a list.
+ It's not clear if duplicates are allowed.
+-}
+rndSelect :: [a] -> Int -> IO [a]
+rndSelect _ 0 = return []
+rndSelect [] _ = return []
+rndSelect xs n = do
+  rnd <- randomRIO (0, (length xs) - 1)
+  rest <- rndSelect xs (n - 1)
+  return $ (xs !! rnd) : rest
+
