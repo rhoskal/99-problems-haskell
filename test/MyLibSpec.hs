@@ -174,9 +174,9 @@ spec = do
     range 5 1 `shouldBe` []
     range 1 1 `shouldBe` [1]
 
-  it "[23] should get random selection" $ do
-    rndSelect ([1 .. 10] :: [Int]) 3 >>= (\selection -> length selection `shouldBe` 3)
-    rndSelect (['a' .. 'z'] :: [Char]) 5 >>= (\selection -> length selection `shouldBe` 5)
+  it "[23] Should get random selection" $ do
+    rndSelect ([1 .. 10] :: [Int]) 3 >>= (`shouldBe` 3) . length
+    rndSelect (['a' .. 'z'] :: [Char]) 5 >>= (`shouldBe` 5) . length
 
-  it "[24] should get random selection" $ do
-    lottoSelect 6 49 >>= (\selection -> length selection `shouldBe` 6)
+  it "[24] Should get random selection" $ do
+    lottoSelect 6 49 >>= (`shouldBe` 6) . length

@@ -257,4 +257,4 @@ rndSelect xs n = do
  Extract n different random numbers from the set 1..M.
 -}
 lottoSelect :: Int -> Int -> IO [Int]
-lottoSelect n max = rndSelect [1 .. max] n
+lottoSelect n m = rndSelect [1 .. m] n
