@@ -18,6 +18,7 @@ module MyLib
     myReplicate,
     myReverse,
     pack,
+    range,
     removeAt,
     rotate,
     slice,
@@ -225,3 +226,12 @@ insertAt x xs n
   | n < 0 = xs
   | n >= length xs = xs ++ [x]
   | otherwise = take (n - 1) xs ++ x : drop (n - 1) xs
+
+{- Problem 22
+ Create a list containing all integers within a given range.
+-}
+range :: Int -> Int -> [Int]
+range a b
+  | b < a = []
+  | otherwise = [a] ++ range (a + 1) b
+-- range a b = take ((b - a) + 1) $ iterate (+ 1) a

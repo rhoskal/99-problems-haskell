@@ -20,6 +20,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    range,
     removeAt,
     rotate,
     slice,
@@ -165,3 +166,8 @@ spec = do
     insertAt 'X' ['a' .. 'd'] 2 `shouldBe` "aXbcd"
     insertAt 'X' ['a' .. 'd'] (-1) `shouldBe` "abcd"
     insertAt 'X' ['a' .. 'd'] (99) `shouldBe` "abcdX"
+
+  it "[22] Should create an array with sequential elements given range" $ do
+    range 4 9 `shouldBe` [4 .. 9]
+    range 5 1 `shouldBe` []
+    range 1 1 `shouldBe` [1]
