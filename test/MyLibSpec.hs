@@ -3,6 +3,7 @@ module MyLibSpec (spec) where
 import MyLib
   ( Encoded (..),
     NestedList (..),
+    combinations,
     compress,
     decodeModified,
     dropEvery,
@@ -185,3 +186,44 @@ spec = do
   it "[25] Should generate random permutation" $ do
     rndPermutations (['a' .. 'f'] :: [Char]) >>= (`shouldBe` 6) . length
     rndPermutations ([1 .. 5] :: [Int]) >>= (`shouldBe` 5) . length
+
+  it "[26] Should generate combinations" $ do
+    combinations 0 (['a' .. 'd'] :: [Char]) `shouldBe` [[]]
+    combinations 1 (['a' .. 'd'] :: [Char]) `shouldBe` [['a'], ['b'], ['c'], ['d']]
+    combinations 1 ([1 .. 4] :: [Int]) `shouldBe` [[1], [2], [3], [4]]
+    combinations 2 ([1 .. 4] :: [Int])
+      `shouldBe` [ [1, 2],
+                   [1, 3],
+                   [1, 4],
+                   [2, 3],
+                   [2, 4],
+                   [3, 4]
+                 ]
+    combinations 3 (['a' .. 'f'] :: [Char])
+      `shouldBe` [ "abc",
+                   "abd",
+                   "abe",
+                   "abf",
+                   "acd",
+                   "ace",
+                   "acf",
+                   "ade",
+                   "adf",
+                   "aef",
+                   "bcd",
+                   "bce",
+                   "bcf",
+                   "bde",
+                   "bdf",
+                   "bef",
+                   "cde",
+                   "cdf",
+                   "cef",
+                   "def"
+                 ]
+
+  it "[27] " $ do
+    True `shouldBe` True
+
+  it "[28] " $ do
+    True `shouldBe` True

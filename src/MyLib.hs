@@ -1,6 +1,7 @@
 module MyLib
   ( Encoded (..),
     NestedList (..),
+    combinations,
     compress,
     decodeModified,
     dropEvery,
@@ -267,3 +268,15 @@ lottoSelect n m = rndSelect [1 .. m] n
 rndPermutations :: [a] -> IO [a]
 rndPermutations [] = return []
 rndPermutations xs = rndSelect xs (length xs)
+
+{- Problem 26
+ Generate combinations of k distinct objects chosen from the n elements of a list.
+-}
+combinations :: Int -> [a] -> [[a]]
+combinations 0 _ = [[]]
+combinations n xs =
+  [ xs !! i : x
+    | i <- [0 .. (length xs) - 1],
+      x <- combinations (n - 1) $ drop (i + 1) xs
+  ]
+
