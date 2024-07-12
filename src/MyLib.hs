@@ -346,4 +346,4 @@ lfsort as = sortBy (\xs ys -> compare (frequency (length xs) as) (frequency (len
 isPrime :: (Integral a) => a -> Bool
 isPrime n
   | n < 2 = False
-  | otherwise = all ((/= 0) . mod n) [2 .. round $ sqrt $ fromIntegral n]
+  | otherwise = all ((/= 0) . mod n) [2 .. floor $ sqrt $ fromIntegral n]
