@@ -11,6 +11,7 @@ module MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    goldbach,
     group,
     group3,
     insertAt,
@@ -379,3 +380,22 @@ primeFactorsMult = map (\x -> (head x, length x)) . groupBy ((==)) . primeFactor
 -}
 primesFrom :: Int -> Int -> [Int]
 primesFrom lower upper = filter isPrime [lower .. upper]
+
+safeHead :: [a] -> Maybe a
+safeHead [] = Nothing
+safeHead (x : _) = Just x
+
+{- Problem 35
+ Goldbach's conjecture - finds two prime numbers that sum up to a given even integer.
+-}
+goldbach :: Int -> Maybe (Int, Int)
+goldbach n
+  | n <= 2 = Nothing
+  | mod n 2 /= 0 = Nothing
+  | otherwise =
+      safeHead
+        [ (x, y)
+          | x <- primesFrom 3 (n - 2),
+            let y = n - x,
+            isPrime y
+        ]

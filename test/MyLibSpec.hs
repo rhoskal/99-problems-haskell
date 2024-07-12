@@ -13,6 +13,7 @@ import MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    goldbach,
     group,
     group3,
     insertAt,
@@ -314,3 +315,10 @@ spec = do
     primesFrom 10 20 `shouldBe` [11, 13, 17, 19]
     primesFrom 50 100 `shouldBe` [53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     length (primesFrom 2 7920) `shouldBe` 1000
+
+  it "[35] Should return two primes that sum to the given even number" $ do
+    goldbach 2 `shouldBe` Nothing
+    goldbach 13 `shouldBe` Nothing
+    goldbach 28 `shouldBe` Just (5, 23)
+    goldbach 60 `shouldBe` Just (7, 53)
+
