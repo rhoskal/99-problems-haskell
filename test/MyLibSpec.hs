@@ -39,6 +39,7 @@ import MyLib
     rotate,
     slice,
     split,
+    totientPhi,
     unsafeGoldbach,
     unsafeGoldbachList,
   )
@@ -345,3 +346,8 @@ spec = do
     coprime 15 8 `shouldBe` True
     coprime 3 20 `shouldBe` True
     coprime 5 12 `shouldBe` True
+
+  it "[39] Should return the totient" $ do
+    totientPhi 10 `shouldBe` 4
+    totientPhi 9 `shouldBe` 6
+    totientPhi 20 `shouldBe` 8
