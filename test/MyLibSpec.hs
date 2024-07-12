@@ -17,6 +17,7 @@ import MyLib
     group3,
     insertAt,
     isPalindrome,
+    isPrime,
     lastTwo,
     lfsort,
     lottoSelect,
@@ -280,3 +281,10 @@ spec = do
 
   it "[30] Should return elements sorted by least frequency lengths first" $ do
     lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] `shouldBe` ["ijkl", "o", "abc", "fgh", "de", "de", "mn"]
+
+  it "[31] Should return true if given number is prime" $ do
+    isPrime (0 :: Integer) `shouldBe` False
+    isPrime (4 :: Integer) `shouldBe` False
+    isPrime (7 :: Integer) `shouldBe` True
+    isPrime (17 :: Integer) `shouldBe` True
+    isPrime (47 :: Integer) `shouldBe` True

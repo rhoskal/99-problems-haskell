@@ -15,6 +15,7 @@ module MyLib
     group3,
     insertAt,
     isPalindrome,
+    isPrime,
     lastTwo,
     lfsort,
     lottoSelect,
@@ -337,3 +338,12 @@ lfsort as = sortBy (\xs ys -> compare (frequency (length xs) as) (frequency (len
 --         groupBy (\x y -> fst x == fst y) $
 --           sortOn fst $
 --             map (\x -> (length x, x)) xs
+
+{- Problem 31
+ Should return true if given number is prime.
+ Note: uses "trivial division" which is the most basic algo.
+-}
+isPrime :: (Integral a) => a -> Bool
+isPrime n
+  | n < 2 = False
+  | otherwise = all ((/= 0) . mod n) [2 .. round $ sqrt $ fromIntegral n]
