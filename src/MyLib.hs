@@ -20,6 +20,7 @@ module MyLib
     lfsort,
     lottoSelect,
     lsort,
+    myGCD,
     myLast,
     myLength,
     myReplicate,
@@ -417,3 +418,12 @@ unsafeGoldbachList lower upper = map (\e -> (e, (unsafeGoldbach e))) [i | i <- [
 --   | otherwise = Just $ map (\e -> (e, fromMaybe (0, 0) (goldbach e))) evens
 --   where
 --     evens = [i | i <- [lower .. upper], mod i 2 == 0]
+
+{- Problem 37
+ Determine the greatest common divisor of two positive numbers.
+ Note: uses Euclid's algo
+-}
+myGCD :: Int -> Int -> Int
+myGCD a b
+  | a == 0 = b
+  | otherwise = myGCD (mod (abs b) (abs a)) (abs a)

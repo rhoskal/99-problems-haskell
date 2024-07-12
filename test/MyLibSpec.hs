@@ -22,6 +22,7 @@ import MyLib
     lfsort,
     lottoSelect,
     lsort,
+    myGCD,
     myLast,
     myLength,
     myReplicate,
@@ -331,3 +332,9 @@ spec = do
                    (20, (3, 17))
                  ]
     length (unsafeGoldbachList 3 3000) `shouldBe` 1499
+
+  it "[37] Should return the gcd of two numbers" $ do
+    myGCD 36 63 `shouldBe` 9
+    myGCD (-3) (-6) `shouldBe` 3
+    myGCD (-3) 6 `shouldBe` 3
+    myGCD 234 42 `shouldBe` 6
