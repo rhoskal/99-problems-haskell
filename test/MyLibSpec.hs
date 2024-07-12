@@ -5,6 +5,7 @@ import MyLib
     NestedList (..),
     combinations,
     compress,
+    coprime,
     decodeModified,
     dropEvery,
     duplicate,
@@ -338,3 +339,9 @@ spec = do
     myGCD (-3) (-6) `shouldBe` 3
     myGCD (-3) 6 `shouldBe` 3
     myGCD 234 42 `shouldBe` 6
+
+  it "[38] Should return true if two numbers are coprime" $ do
+    coprime 35 64 `shouldBe` True
+    coprime 15 8 `shouldBe` True
+    coprime 3 20 `shouldBe` True
+    coprime 5 12 `shouldBe` True

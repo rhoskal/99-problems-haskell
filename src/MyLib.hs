@@ -3,6 +3,7 @@ module MyLib
     NestedList (..),
     combinations,
     compress,
+    coprime,
     decodeModified,
     dropEvery,
     duplicate,
@@ -427,3 +428,10 @@ myGCD :: Int -> Int -> Int
 myGCD a b
   | a == 0 = b
   | otherwise = myGCD (mod (abs b) (abs a)) (abs a)
+
+{- Problem 38
+ Determine whether two positive integer numbers are coprime.
+ Note: two numbers are coprime if their greatest common divisor equals 1.
+-}
+coprime :: Int -> Int -> Bool
+coprime a b = myGCD a b == 1
