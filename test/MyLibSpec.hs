@@ -1,5 +1,6 @@
 module MyLibSpec (spec) where
 
+import Data.Maybe (fromJust)
 import MyLib
   ( Encoded (..),
     NestedList (..),
@@ -14,6 +15,7 @@ import MyLib
     encodeModified,
     flatten,
     goldbach,
+    goldbachList,
     group,
     group3,
     insertAt,
@@ -322,3 +324,15 @@ spec = do
     goldbach 28 `shouldBe` Just (5, 23)
     goldbach 60 `shouldBe` Just (7, 53)
 
+  it "[36] Should return a list of all even numbers and their Goldbach composition" $ do
+    goldbachList 3 3 `shouldBe` Nothing
+    goldbachList 9 20
+      `shouldBe` Just
+        [ (10, (3, 7)),
+          (12, (5, 7)),
+          (14, (3, 11)),
+          (16, (3, 13)),
+          (18, (5, 13)),
+          (20, (3, 17))
+        ]
+    fromJust (length <$> goldbachList 3 3000) `shouldBe` 1499
