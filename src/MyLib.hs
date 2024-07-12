@@ -11,8 +11,6 @@ module MyLib
     encodeDirect,
     encodeModified,
     flatten,
-    goldbach,
-    goldbachList,
     group,
     group3,
     insertAt,
@@ -37,11 +35,12 @@ module MyLib
     rotate,
     slice,
     split,
+    unsafeGoldbach,
+    unsafeGoldbachList,
   )
 where
 
 import Data.List (groupBy, sortBy, sortOn)
-import Data.Maybe (fromMaybe)
 import System.Random (randomRIO)
 
 {- Problem 1
@@ -383,32 +382,38 @@ primeFactorsMult = map (\x -> (head x, length x)) . groupBy ((==)) . primeFactor
 primesFrom :: Int -> Int -> [Int]
 primesFrom lower upper = filter isPrime [lower .. upper]
 
-safeHead :: [a] -> Maybe a
-safeHead [] = Nothing
-safeHead (x : _) = Just x
+-- safeHead :: [a] -> Maybe a
+-- safeHead [] = Nothing
+-- safeHead (x : _) = Just x
 
 {- Problem 35
  Goldbach's conjecture - finds two prime numbers that sum up to a given even integer.
 -}
-goldbach :: Int -> Maybe (Int, Int)
-goldbach n
-  | n <= 2 = Nothing
-  | mod n 2 /= 0 = Nothing
-  | otherwise =
-      safeHead
-        [ (x, y)
-          | x <- primesFrom 3 (n - 2),
-            let y = n - x,
-            isPrime y
-        ]
+unsafeGoldbach :: Int -> (Int, Int)
+unsafeGoldbach n = head [(x, y) | x <- primesFrom 3 (n - 2), let y = n - x, isPrime y]
+
+-- goldbach :: Int -> Maybe (Int, Int)
+-- goldbach n
+--   | n <= 2 = Nothing
+--   | mod n 2 /= 0 = Nothing
+--   | otherwise =
+--       safeHead
+--         [ (x, y)
+--           | x <- primesFrom 3 (n - 2),
+--             let y = n - x,
+--             isPrime y
+--         ]
 
 {- Problem 36
  Given a range of integers by its lower and upper limit, print a list of
  all even numbers and their Goldbach composition.
 -}
-goldbachList :: Int -> Int -> Maybe [(Int, (Int, Int))]
-goldbachList lower upper
-  | upper <= lower = Nothing
-  | otherwise = Just $ map (\e -> (e, fromMaybe (0, 0) (goldbach e))) evens
-  where
-    evens = [i | i <- [lower .. upper], mod i 2 == 0]
+unsafeGoldbachList :: Int -> Int -> [(Int, (Int, Int))]
+unsafeGoldbachList lower upper = map (\e -> (e, (unsafeGoldbach e))) [i | i <- [lower .. upper], mod i 2 == 0]
+
+-- goldbachList :: Int -> Int -> Maybe [(Int, (Int, Int))]
+-- goldbachList lower upper
+--   | upper <= lower = Nothing
+--   | otherwise = Just $ map (\e -> (e, fromMaybe (0, 0) (goldbach e))) evens
+--   where
+--     evens = [i | i <- [lower .. upper], mod i 2 == 0]

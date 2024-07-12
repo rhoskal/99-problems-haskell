@@ -1,6 +1,5 @@
 module MyLibSpec (spec) where
 
-import Data.Maybe (fromJust)
 import MyLib
   ( Encoded (..),
     NestedList (..),
@@ -14,8 +13,6 @@ import MyLib
     encodeDirect,
     encodeModified,
     flatten,
-    goldbach,
-    goldbachList,
     group,
     group3,
     insertAt,
@@ -40,6 +37,8 @@ import MyLib
     rotate,
     slice,
     split,
+    unsafeGoldbach,
+    unsafeGoldbachList,
   )
 import Test.Hspec
 
@@ -319,20 +318,16 @@ spec = do
     length (primesFrom 2 7920) `shouldBe` 1000
 
   it "[35] Should return two primes that sum to the given even number" $ do
-    goldbach 2 `shouldBe` Nothing
-    goldbach 13 `shouldBe` Nothing
-    goldbach 28 `shouldBe` Just (5, 23)
-    goldbach 60 `shouldBe` Just (7, 53)
+    unsafeGoldbach 28 `shouldBe` (5, 23)
+    unsafeGoldbach 60 `shouldBe` (7, 53)
 
   it "[36] Should return a list of all even numbers and their Goldbach composition" $ do
-    goldbachList 3 3 `shouldBe` Nothing
-    goldbachList 9 20
-      `shouldBe` Just
-        [ (10, (3, 7)),
-          (12, (5, 7)),
-          (14, (3, 11)),
-          (16, (3, 13)),
-          (18, (5, 13)),
-          (20, (3, 17))
-        ]
-    fromJust (length <$> goldbachList 3 3000) `shouldBe` 1499
+    unsafeGoldbachList 9 20
+      `shouldBe` [ (10, (3, 7)),
+                   (12, (5, 7)),
+                   (14, (3, 11)),
+                   (16, (3, 13)),
+                   (18, (5, 13)),
+                   (20, (3, 17))
+                 ]
+    length (unsafeGoldbachList 3 3000) `shouldBe` 1499
