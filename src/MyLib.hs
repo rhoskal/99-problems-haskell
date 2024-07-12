@@ -26,6 +26,7 @@ module MyLib
     myReverse,
     pack,
     primeFactors,
+    primeFactorsMult,
     range,
     removeAt,
     rndPermutations,
@@ -36,7 +37,7 @@ module MyLib
   )
 where
 
-import Data.List (sortBy, sortOn)
+import Data.List (groupBy, sortBy, sortOn)
 import System.Random (randomRIO)
 
 {- Problem 1
@@ -364,3 +365,10 @@ primeFactors n = primeFactors' n 2
     primeFactors' num divisor
       | num `mod` divisor == 0 = divisor : primeFactors' (num `div` divisor) divisor
       | otherwise = primeFactors' num (divisor + 1)
+
+{- Problem 33
+ Determine the prime factors and their multiplicities of a given positive integer.
+ Note: using `groupBy` instead of `group` from `Data.List` to avoid naming collision
+-}
+primeFactorsMult :: Int -> [(Int, Int)]
+primeFactorsMult = map (\x -> (head x, length x)) . groupBy ((==)) . primeFactors

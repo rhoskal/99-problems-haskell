@@ -28,6 +28,7 @@ import MyLib
     myReverse,
     pack,
     primeFactors,
+    primeFactorsMult,
     range,
     removeAt,
     rndPermutations,
@@ -295,3 +296,15 @@ spec = do
     primeFactors 315 `shouldBe` [3, 3, 5, 7]
     primeFactors 35 `shouldBe` [5, 7]
     primeFactors 820 `shouldBe` [2, 2, 5, 41]
+
+  it "[33] Should calculate the prime factors and multiplicities" $ do
+    primeFactorsMult 315
+      `shouldBe` [ (3, 2),
+                   (5, 1),
+                   (7, 1)
+                 ]
+    primeFactorsMult 820
+      `shouldBe` [ (2, 2),
+                   (5, 1),
+                   (41, 1)
+                 ]
