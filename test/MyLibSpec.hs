@@ -29,6 +29,7 @@ import MyLib
     pack,
     primeFactors,
     primeFactorsMult,
+    primesFrom,
     range,
     removeAt,
     rndPermutations,
@@ -308,3 +309,8 @@ spec = do
                    (5, 1),
                    (41, 1)
                  ]
+
+  it "[34] Should return a list of primes within a range" $ do
+    primesFrom 10 20 `shouldBe` [11, 13, 17, 19]
+    primesFrom 50 100 `shouldBe` [53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    length (primesFrom 2 7920) `shouldBe` 1000

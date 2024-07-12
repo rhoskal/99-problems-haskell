@@ -27,6 +27,7 @@ module MyLib
     pack,
     primeFactors,
     primeFactorsMult,
+    primesFrom,
     range,
     removeAt,
     rndPermutations,
@@ -372,3 +373,9 @@ primeFactors n = primeFactors' n 2
 -}
 primeFactorsMult :: Int -> [(Int, Int)]
 primeFactorsMult = map (\x -> (head x, length x)) . groupBy ((==)) . primeFactors
+
+{- Problem 34
+ Given a range of integers by its lower and upper limit, construct a list of all prime numbers in that range.
+-}
+primesFrom :: Int -> Int -> [Int]
+primesFrom lower upper = filter isPrime [lower .. upper]
