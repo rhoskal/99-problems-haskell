@@ -343,11 +343,14 @@ lfsort as = sortBy (\xs ys -> compare (frequency (length xs) as) (frequency (len
 {- Problem 31
  Should return true if given number is prime.
  Note: uses "trivial division" which is the most basic algo.
+ Optimizations: only check up to the sqrt n and skip evens after 2
 -}
 isPrime :: (Integral a) => a -> Bool
 isPrime n
   | n < 2 = False
-  | otherwise = all ((/= 0) . mod n) [2 .. floor $ sqrt $ fromIntegral n]
+  | otherwise =
+      all ((/= 0) . mod n) $
+        takeWhile (\i -> i * i <= n) (2 : [i | i <- [3 ..], i `mod` 2 /= 0])
 
 {- Problem 32
  Determine the prime factors of a given positive integer.

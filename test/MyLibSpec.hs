@@ -289,6 +289,7 @@ spec = do
     isPrime (7 :: Integer) `shouldBe` True
     isPrime (17 :: Integer) `shouldBe` True
     isPrime (47 :: Integer) `shouldBe` True
+    isPrime (223 :: Integer) `shouldBe` True
 
   it "[32] Should calculate the prime factors" $ do
     primeFactors 315 `shouldBe` [3, 3, 5, 7]
