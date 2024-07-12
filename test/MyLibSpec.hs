@@ -18,6 +18,7 @@ import MyLib
     insertAt,
     isPalindrome,
     lastTwo,
+    lfsort,
     lottoSelect,
     lsort,
     myLast,
@@ -276,3 +277,6 @@ spec = do
 
   it "[29] Should return elements sorted by length" $ do
     lsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] `shouldBe` ["o", "de", "de", "mn", "abc", "fgh", "ijkl"]
+
+  it "[30] Should return elements sorted by least frequency lengths first" $ do
+    lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] `shouldBe` ["ijkl", "o", "abc", "fgh", "de", "de", "mn"]

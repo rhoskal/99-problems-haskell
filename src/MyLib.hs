@@ -16,6 +16,7 @@ module MyLib
     insertAt,
     isPalindrome,
     lastTwo,
+    lfsort,
     lottoSelect,
     lsort,
     myLast,
@@ -33,7 +34,7 @@ module MyLib
   )
 where
 
-import Data.List (sortOn)
+import Data.List (sortBy, sortOn)
 import System.Random (randomRIO)
 
 {- Problem 1
@@ -315,3 +316,24 @@ group (n : ns) xs =
 -}
 lsort :: [String] -> [String]
 lsort = sortOn length
+
+{- Problem 30
+ Sort the elements of a list according to their length frequency.
+ e.g. in the default, where sorting is done ascendingly, lists with rare
+ lengths are placed first, others with a more frequent length come later.
+-}
+lfsort :: [String] -> [String]
+lfsort as = sortBy (\xs ys -> compare (frequency (length xs) as) (frequency (length ys) as)) as
+  where
+    frequency :: Int -> [String] -> Int
+    frequency len = length . filter (\x -> length x == len)
+
+-- Does not keep order of original list
+-- lfsort :: [String] -> [String]
+-- lfsort xs =
+--   map snd $
+--     concat $
+--       sortOn length $
+--         groupBy (\x y -> fst x == fst y) $
+--           sortOn fst $
+--             map (\x -> (length x, x)) xs
