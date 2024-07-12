@@ -27,6 +27,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    primeFactors,
     range,
     removeAt,
     rndPermutations,
@@ -288,3 +289,8 @@ spec = do
     isPrime (7 :: Integer) `shouldBe` True
     isPrime (17 :: Integer) `shouldBe` True
     isPrime (47 :: Integer) `shouldBe` True
+
+  it "[32] Should calculate the prime factors" $ do
+    primeFactors 315 `shouldBe` [3, 3, 5, 7]
+    primeFactors 35 `shouldBe` [5, 7]
+    primeFactors 820 `shouldBe` [2, 2, 5, 41]

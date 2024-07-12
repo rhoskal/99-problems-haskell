@@ -25,6 +25,7 @@ module MyLib
     myReplicate,
     myReverse,
     pack,
+    primeFactors,
     range,
     removeAt,
     rndPermutations,
@@ -347,3 +348,16 @@ isPrime :: (Integral a) => a -> Bool
 isPrime n
   | n < 2 = False
   | otherwise = all ((/= 0) . mod n) [2 .. floor $ sqrt $ fromIntegral n]
+
+{- Problem 32
+ Determine the prime factors of a given positive integer.
+ Returns a flat list containing the prime factors in ascending order.
+-}
+primeFactors :: Int -> [Int]
+primeFactors n = primeFactors' n 2
+  where
+    primeFactors' :: Int -> Int -> [Int]
+    primeFactors' 1 _ = []
+    primeFactors' num divisor
+      | num `mod` divisor == 0 = divisor : primeFactors' (num `div` divisor) divisor
+      | otherwise = primeFactors' num (divisor + 1)
