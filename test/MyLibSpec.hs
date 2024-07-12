@@ -19,6 +19,7 @@ import MyLib
     isPalindrome,
     lastTwo,
     lottoSelect,
+    lsort,
     myLast,
     myLength,
     myReplicate,
@@ -272,3 +273,6 @@ spec = do
                    [["c", "d"], ["a"]],
                    [["c", "d"], ["b"]]
                  ]
+
+  it "[29] Should return elements sorted by length" $ do
+    lsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] `shouldBe` ["o", "de", "de", "mn", "abc", "fgh", "ijkl"]

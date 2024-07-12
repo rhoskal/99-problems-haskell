@@ -17,6 +17,7 @@ module MyLib
     isPalindrome,
     lastTwo,
     lottoSelect,
+    lsort,
     myLast,
     myLength,
     myReplicate,
@@ -32,6 +33,7 @@ module MyLib
   )
 where
 
+import Data.List (sortOn)
 import System.Random (randomRIO)
 
 {- Problem 1
@@ -306,3 +308,10 @@ group (n : ns) xs =
     | (g, rs) <- combinations' n xs,
       gs <- group ns rs
   ]
+
+{- Problem 29
+ Sort the elements of a list according to their length.
+ e.g. short lists first, longer lists later.
+-}
+lsort :: [String] -> [String]
+lsort = sortOn length
