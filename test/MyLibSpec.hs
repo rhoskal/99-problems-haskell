@@ -13,6 +13,8 @@ import MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    group,
+    group3,
     insertAt,
     isPalindrome,
     lastTwo,
@@ -222,8 +224,51 @@ spec = do
                    "def"
                  ]
 
-  it "[27] " $ do
-    True `shouldBe` True
+  it "[27] Should return combinations of length 3" $ do
+    ( length $
+        group3
+          ( [ "aldo",
+              "beat",
+              "carla",
+              "david",
+              "evi",
+              "flip",
+              "gary",
+              "hugo",
+              "ida"
+            ] ::
+              [String]
+          )
+      )
+      `shouldBe` 84
+    (length $ group3 ([1 .. 6] :: [Int])) `shouldBe` 20
+    group3 ([1 .. 4] :: [Int])
+      `shouldBe` [ [[1, 2, 3]],
+                   [[1, 2, 4]],
+                   [[1, 3, 4]],
+                   [[2, 3, 4]]
+                 ]
 
-  it "[28] " $ do
-    True `shouldBe` True
+  it "[28] Should handle a generalized `group3`" $ do
+    ( length $
+        group [2, 3, 4] ["aldo", "beat", "carla", "david", "evi", "flip", "gary", "hugo", "ida"]
+      )
+      `shouldBe` 1260
+    ( length $
+        group [2, 2, 5] ["aldo", "beat", "carla", "david", "evi", "flip", "gary", "hugo", "ida"]
+      )
+      `shouldBe` 756
+    group [2, 1] ["a", "b", "c", "d"]
+      `shouldBe` [ [["a", "b"], ["c"]],
+                   [["a", "b"], ["d"]],
+                   [["a", "c"], ["b"]],
+                   [["a", "c"], ["d"]],
+                   [["a", "d"], ["b"]],
+                   [["a", "d"], ["c"]],
+                   [["b", "c"], ["a"]],
+                   [["b", "c"], ["d"]],
+                   [["b", "d"], ["a"]],
+                   [["b", "d"], ["c"]],
+                   [["c", "d"], ["a"]],
+                   [["c", "d"], ["b"]]
+                 ]

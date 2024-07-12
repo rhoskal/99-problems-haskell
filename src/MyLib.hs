@@ -11,6 +11,8 @@ module MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    group,
+    group3,
     insertAt,
     isPalindrome,
     lastTwo,
@@ -280,3 +282,27 @@ combinations n xs =
       x <- combinations (n - 1) $ drop (i + 1) xs
   ]
 
+combinations' :: Int -> [a] -> [([a], [a])]
+combinations' 0 xs = [([], xs)]
+combinations' _ [] = []
+combinations' n (x : xs) = selected ++ remaining
+  where
+    selected = [(x : ys, zs) | (ys, zs) <- combinations' (n - 1) xs]
+    remaining = [(ys, x : zs) | (ys, zs) <- combinations' n xs]
+
+{- Problem 27
+ Group the elements of a set into 3 disjoint subsets.
+-}
+group3 :: [a] -> [[[a]]]
+group3 = group [3]
+
+{- Problem 28
+ Generalized `group3` specifying a list of group sizes and the predicate will return a list of groups.
+-}
+group :: [Int] -> [a] -> [[[a]]]
+group [] _ = [[]]
+group (n : ns) xs =
+  [ g : gs
+    | (g, rs) <- combinations' n xs,
+      gs <- group ns rs
+  ]
