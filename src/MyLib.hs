@@ -27,6 +27,7 @@ module MyLib
     myReplicate,
     myReverse,
     pack,
+    phi,
     primeFactors,
     primeFactorsMult,
     primesFrom,
@@ -444,3 +445,11 @@ totientPhi :: Int -> Int
 totientPhi n = foldl (\acc a -> if (coprime n a) then 1 + acc else acc) 0 [1 .. n]
 
 -- totientPhi n = length [i | i <- [1 .. n], coprime n i]
+
+{- Problem 40
+ Calculate Euler's totient function phi(m) - improved.
+-}
+phi :: Int -> Int
+phi n = product [(p - 1) * p ^ (m - 1) | (p, m) <- primeFactorsMult n]
+
+-- phi n = foldl (\acc (p, m) -> acc * (p - 1) * (p ^ (m - 1))) 1 (primeFactorsMult n)

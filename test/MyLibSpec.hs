@@ -29,6 +29,7 @@ import MyLib
     myReplicate,
     myReverse,
     pack,
+    phi,
     primeFactors,
     primeFactorsMult,
     primesFrom,
@@ -349,5 +350,12 @@ spec = do
 
   it "[39] Should return the totient" $ do
     totientPhi 10 `shouldBe` 4
+    totientPhi 13 `shouldBe` 12
     totientPhi 9 `shouldBe` 6
     totientPhi 20 `shouldBe` 8
+
+  it "[40] Should return the totient using the improved method" $ do
+    phi 10 `shouldBe` 4
+    phi 13 `shouldBe` 12
+    phi 9 `shouldBe` 6
+    phi 20 `shouldBe` 8
