@@ -442,9 +442,9 @@ coprime a b = myGCD a b == 1
  Calculate Euler's totient function phi(m).
 -}
 totientPhi :: Int -> Int
-totientPhi n = foldl (\acc a -> if (coprime n a) then 1 + acc else acc) 0 [1 .. n]
+totientPhi n = length [i | i <- [1 .. n], coprime n i]
 
--- totientPhi n = length [i | i <- [1 .. n], coprime n i]
+-- totientPhi n = foldl (\acc a -> if (coprime n a) then 1 + acc else acc) 0 [1 .. n]
 
 {- Problem 40
  Calculate Euler's totient function phi(m) - improved.

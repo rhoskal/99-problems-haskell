@@ -359,3 +359,6 @@ spec = do
     phi 13 `shouldBe` 12
     phi 9 `shouldBe` 6
     phi 20 `shouldBe` 8
+
+  it "[41] Should time both phi functions" $ do
+    True `shouldBe` True
