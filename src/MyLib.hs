@@ -1,6 +1,8 @@
 module MyLib
   ( Encoded (..),
     NestedList (..),
+    TruthTable (..),
+    TTRow (..),
     combinations,
     compress,
     coprime,
@@ -38,6 +40,7 @@ module MyLib
     rotate,
     slice,
     split,
+    table,
     totientPhi,
     unsafeGoldbach,
     unsafeGoldbachList,
@@ -453,3 +456,20 @@ phi :: Int -> Int
 phi n = product [(p - 1) * p ^ (m - 1) | (p, m) <- primeFactorsMult n]
 
 -- phi n = foldl (\acc (p, m) -> acc * (p - 1) * (p ^ (m - 1))) 1 (primeFactorsMult n)
+
+{- Problem 42
+ Truth table for logical expressions.
+ I'd rather return a value than print table to the console.
+-}
+table :: (Bool -> Bool -> Bool) -> TruthTable
+table expr =
+  TruthTable
+    ( TTRow (True, True, expr True True),
+      TTRow (True, False, expr True False),
+      TTRow (False, True, expr False True),
+      TTRow (False, False, expr False False)
+    )
+
+newtype TruthTable = TruthTable (TTRow, TTRow, TTRow, TTRow) deriving (Eq, Show)
+
+newtype TTRow = TTRow (Bool, Bool, Bool) deriving (Eq, Show)

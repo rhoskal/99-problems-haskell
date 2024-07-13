@@ -1,8 +1,11 @@
 module MyLibSpec (spec) where
 
+import Boolean
 import MyLib
   ( Encoded (..),
     NestedList (..),
+    TTRow (..),
+    TruthTable (..),
     combinations,
     compress,
     coprime,
@@ -40,6 +43,7 @@ import MyLib
     rotate,
     slice,
     split,
+    table,
     totientPhi,
     unsafeGoldbach,
     unsafeGoldbachList,
@@ -362,3 +366,22 @@ spec = do
 
   it "[41] Should time both phi functions" $ do
     True `shouldBe` True
+
+  it "[42] Should return a boolean table" $
+    do
+      -- a ∧ (a ∨ b)
+      table (\a b -> (and' a (or' a b)))
+        `shouldBe` TruthTable
+          ( TTRow (True, True, True),
+            TTRow (True, False, True),
+            TTRow (False, True, False),
+            TTRow (False, False, False)
+          )
+      -- (a ∨ b) ∧ (a ∧ b)
+      table (\a b -> (and' (or' a b) (and' a b)))
+        `shouldBe` TruthTable
+          ( TTRow (True, True, True),
+            TTRow (True, False, False),
+            TTRow (False, True, False),
+            TTRow (False, False, False)
+          )
