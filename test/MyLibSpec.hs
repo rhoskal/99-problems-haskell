@@ -449,4 +449,8 @@ spec = do
         --    \  /
         --    x x
         t3 = Branch 'x' (Branch 'x' Empty (Branch 'x' Empty Empty)) (Branch 'x' (Branch 'x' Empty Empty) Empty)
-     in [isSymmetricTree t1, isSymmetricTree t2, isSymmetricTree t3] `shouldBe` [False, True, True]
+     in [ isSymmetricTree t1,
+          isSymmetricTree t2,
+          isSymmetricTree t3
+        ]
+          `shouldBe` [False, True, True]
