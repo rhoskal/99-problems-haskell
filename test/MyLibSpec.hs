@@ -1,5 +1,6 @@
 module MyLibSpec (spec) where
 
+import BinaryTree (BinaryTree (..))
 import Boolean
 import MyLib
   ( Encoded (..),
@@ -22,6 +23,7 @@ import MyLib
     group3,
     huffman,
     insertAt,
+    isBinaryTree,
     isPalindrome,
     isPrime,
     lastTwo,
@@ -415,3 +417,8 @@ spec = do
                    ("e", "1101"),
                    ("d", "111")
                  ]
+
+  it "[47] Should return true if given a valid binary tree" $ do
+    let tree :: BinaryTree Int
+        tree = Branch 1 Empty Empty
+     in isBinaryTree tree `shouldBe` True

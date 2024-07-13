@@ -19,6 +19,7 @@ module MyLib
     group3,
     huffman,
     insertAt,
+    isBinaryTree,
     isPalindrome,
     isPrime,
     lastTwo,
@@ -49,6 +50,7 @@ module MyLib
   )
 where
 
+import BinaryTree (BinaryTree (..))
 import Data.List (groupBy, sortBy, sortOn)
 import System.Random (randomRIO)
 
@@ -491,3 +493,11 @@ gray n = map ('0' :) bits ++ map ('1' :) (reverse bits)
 -}
 huffman :: [(String, Int)] -> [(String, String)]
 huffman fs = undefined
+
+{- Problem 47
+ Check whether a given term represents a binary tree.
+ Note: It's not possible to create an invalid binary tree since the only way
+ to create a binary tree is through the type constructor making this predicate unnecessary.
+-}
+isBinaryTree :: BinaryTree a -> Bool
+isBinaryTree _ = True
