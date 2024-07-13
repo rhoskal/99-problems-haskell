@@ -17,6 +17,7 @@ import MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    gray,
     group,
     group3,
     insertAt,
@@ -385,3 +386,14 @@ spec = do
           TTRow (False, True, False),
           TTRow (False, False, False)
         )
+
+  xit "[43]" $ do
+    True `shouldBe` True
+
+  xit "[44]" $ do
+    True `shouldBe` True
+
+  it "[45] Should return gray codes" $ do
+    gray 1 `shouldBe` ["0", "1"]
+    gray 2 `shouldBe` ["00", "01", "11", "10"]
+    gray 3 `shouldBe` ["000", "001", "011", "010", "110", "111", "101", "100"]

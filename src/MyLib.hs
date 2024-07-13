@@ -14,6 +14,7 @@ module MyLib
     encodeDirect,
     encodeModified,
     flatten,
+    gray,
     group,
     group3,
     insertAt,
@@ -473,3 +474,13 @@ table expr =
 newtype TruthTable = TruthTable (TTRow, TTRow, TTRow, TTRow) deriving (Eq, Show)
 
 newtype TTRow = TTRow (Bool, Bool, Bool) deriving (Eq, Show)
+
+{- Problem 45
+ An n-bit Gray code is a sequence of n-bit strings constructed according to certain rules
+-}
+gray :: Int -> [String]
+gray 0 = [""]
+gray n = map ('0' :) bits ++ map ('1' :) (reverse bits)
+  where
+    bits :: [String]
+    bits = gray (n - 1)
