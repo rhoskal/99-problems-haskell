@@ -434,51 +434,19 @@ spec = do
         --   x   x
         --        \
         --         x
-        t1 =
-          Branch
-            'x'
-            (Branch 'x' Empty Empty)
-            ( Branch
-                'x'
-                Empty
-                (Branch 'x' Empty Empty)
-            )
+        t1 = Branch 'x' (Branch 'x' Empty Empty) (Branch 'x' Empty (Branch 'x' Empty Empty))
         t2 :: BinaryTree Char
         --     x
         --    / \
         --   x   x
         --  /     \
         -- x       x
-        t2 =
-          Branch
-            'x'
-            ( Branch
-                'x'
-                (Branch 'x' Empty Empty)
-                Empty
-            )
-            ( Branch
-                'x'
-                Empty
-                (Branch 'x' Empty Empty)
-            )
+        t2 = Branch 'x' (Branch 'x' (Branch 'x' Empty Empty) Empty) (Branch 'x' Empty (Branch 'x' Empty Empty))
         t3 :: BinaryTree Char
         --      x
         --    /  \
         --   x    x
         --    \  /
         --    x x
-        t3 =
-          Branch
-            'x'
-            ( Branch
-                'x'
-                Empty
-                (Branch 'x' Empty Empty)
-            )
-            ( Branch
-                'x'
-                (Branch 'x' Empty Empty)
-                Empty
-            )
+        t3 = Branch 'x' (Branch 'x' Empty (Branch 'x' Empty Empty)) (Branch 'x' (Branch 'x' Empty Empty) Empty)
      in [isSymmetricTree t1, isSymmetricTree t2, isSymmetricTree t3] `shouldBe` [False, True, True]
