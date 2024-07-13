@@ -17,6 +17,7 @@ module MyLib
     gray,
     group,
     group3,
+    huffman,
     insertAt,
     isPalindrome,
     isPrime,
@@ -484,3 +485,9 @@ gray n = map ('0' :) bits ++ map ('1' :) (reverse bits)
   where
     bits :: [String]
     bits = gray (n - 1)
+
+{- Problem 46
+ Constructs the Huffman code table for the frequency table `fs`
+-}
+huffman :: [(String, Int)] -> [(String, String)]
+huffman fs = undefined

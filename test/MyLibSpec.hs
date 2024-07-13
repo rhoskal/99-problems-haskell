@@ -20,6 +20,7 @@ import MyLib
     gray,
     group,
     group3,
+    huffman,
     insertAt,
     isPalindrome,
     isPrime,
@@ -397,3 +398,20 @@ spec = do
     gray 1 `shouldBe` ["0", "1"]
     gray 2 `shouldBe` ["00", "01", "11", "10"]
     gray 3 `shouldBe` ["000", "001", "011", "010", "110", "111", "101", "100"]
+
+  xit "[46] Should return huffman code table" $ do
+    huffman
+      [ ("a", 45),
+        ("b", 13),
+        ("c", 12),
+        ("d", 16),
+        ("e", 9),
+        ("f", 5)
+      ]
+      `shouldBe` [ ("a", "0"),
+                   ("c", "100"),
+                   ("b", "101"),
+                   ("f", "1100"),
+                   ("e", "1101"),
+                   ("d", "111")
+                 ]
