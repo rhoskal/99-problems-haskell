@@ -22,6 +22,7 @@ module MyLib
     isBinaryTree,
     isPalindrome,
     isPrime,
+    isSymmetricTree,
     lastTwo,
     lfsort,
     lottoSelect,
@@ -501,3 +502,27 @@ huffman fs = undefined
 -}
 isBinaryTree :: BinaryTree a -> Bool
 isBinaryTree _ = True
+
+{- Problem 48
+ Construct completely balanced binary tree for a given number of nodes.
+ In a completely balanced binary tree, the following property holds for every node:
+ The number of nodes in its left subtree and the number of nodes in its right subtree
+ are almost equal, which means their difference is not greater than one.
+ Note: use "x" as the data & generate all solutions via backtracking.
+-}
+createCompleteTree :: BinaryTree a
+createCompleteTree = undefined
+
+{- Problem 49
+ Check whether a given binary tree is symmetric.
+ Note: Let us call a binary tree symmetric if you can draw a vertical line through the
+ root node and then the right subtree is the mirror image of the left subtree.
+-}
+isSymmetricTree :: BinaryTree a -> Bool
+isSymmetricTree Empty = True
+isSymmetricTree (Branch _ l r) = isMirror l r
+  where
+    isMirror :: BinaryTree a -> BinaryTree a -> Bool
+    isMirror Empty Empty = True
+    isMirror (Branch _ a b) (Branch _ x y) = isMirror a y && isMirror b x
+    isMirror _ _ = False

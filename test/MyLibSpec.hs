@@ -26,6 +26,7 @@ import MyLib
     isBinaryTree,
     isPalindrome,
     isPrime,
+    isSymmetricTree,
     lastTwo,
     lfsort,
     lottoSelect,
@@ -422,3 +423,62 @@ spec = do
     let tree :: BinaryTree Int
         tree = Branch 1 Empty Empty
      in isBinaryTree tree `shouldBe` True
+
+  xit "[48]" $ do
+    True `shouldBe` True
+
+  it "[49] Should return a symmetric binary tree" $ do
+    let t1 :: BinaryTree Char
+        --     x
+        --    / \
+        --   x   x
+        --        \
+        --         x
+        t1 =
+          Branch
+            'x'
+            (Branch 'x' Empty Empty)
+            ( Branch
+                'x'
+                Empty
+                (Branch 'x' Empty Empty)
+            )
+        t2 :: BinaryTree Char
+        --     x
+        --    / \
+        --   x   x
+        --  /     \
+        -- x       x
+        t2 =
+          Branch
+            'x'
+            ( Branch
+                'x'
+                (Branch 'x' Empty Empty)
+                Empty
+            )
+            ( Branch
+                'x'
+                Empty
+                (Branch 'x' Empty Empty)
+            )
+        t3 :: BinaryTree Char
+        --      x
+        --    /  \
+        --   x    x
+        --    \  /
+        --    x x
+        t3 =
+          Branch
+            'x'
+            ( Branch
+                'x'
+                Empty
+                (Branch 'x' Empty Empty)
+            )
+            ( Branch
+                'x'
+                (Branch 'x' Empty Empty)
+                Empty
+            )
+     in [isSymmetricTree t1, isSymmetricTree t2, isSymmetricTree t3] `shouldBe` [False, True, True]
