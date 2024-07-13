@@ -196,7 +196,7 @@ myReplicate [] _ = []
 myReplicate xs n = foldl (\acc x -> acc ++ repli n x) [] xs
   where
     repli :: Int -> a -> [a]
-    repli n' = take n' . repeat
+    repli num = take num . repeat
 
 {- Problem 16
  Drop every nth item in a given list.
@@ -298,14 +298,6 @@ combinations n xs =
       x <- combinations (n - 1) $ drop (i + 1) xs
   ]
 
-combinations' :: Int -> [a] -> [([a], [a])]
-combinations' 0 xs = [([], xs)]
-combinations' _ [] = []
-combinations' n (x : xs) = selected ++ remaining
-  where
-    selected = [(x : ys, zs) | (ys, zs) <- combinations' (n - 1) xs]
-    remaining = [(ys, x : zs) | (ys, zs) <- combinations' n xs]
-
 {- Problem 27
  Group the elements of a set into 3 disjoint subsets.
 -}
@@ -322,6 +314,14 @@ group (n : ns) xs =
     | (g, rs) <- combinations' n xs,
       gs <- group ns rs
   ]
+
+combinations' :: Int -> [a] -> [([a], [a])]
+combinations' 0 xs = [([], xs)]
+combinations' _ [] = []
+combinations' n (x : xs) = selected ++ remaining
+  where
+    selected = [(x : ys, zs) | (ys, zs) <- combinations' (n - 1) xs]
+    remaining = [(ys, x : zs) | (ys, zs) <- combinations' n xs]
 
 {- Problem 29
  Sort the elements of a list according to their length.
