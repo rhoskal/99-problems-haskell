@@ -510,8 +510,8 @@ isBinaryTree _ = True
  are almost equal, which means their difference is not greater than one.
  Note: use "x" as the data & generate all solutions via backtracking.
 -}
-createCompleteTree :: BinaryTree a
-createCompleteTree = undefined
+createCompleteTree :: Int -> BinaryTree a
+createCompleteTree depth = undefined
 
 {- Problem 49
  Check whether a given binary tree is symmetric.
