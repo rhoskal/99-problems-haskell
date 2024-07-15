@@ -68,7 +68,6 @@ myLast (_ : xs) = myLast $ tail xs
 -}
 lastTwo :: [a] -> Maybe [a]
 lastTwo [] = Nothing
-lastTwo [_] = Nothing
 lastTwo [x, y] = Just [x, y]
 lastTwo (_ : xs) = lastTwo xs
 
@@ -92,7 +91,7 @@ myLength (_ : xs) = 1 + myLength xs
 -- myLength = foldl (\acc _ -> acc + 1) 0
 
 {- Problem 5
- Reverse items in a list
+ Reverse items in a list.
  Note: the cons operator always prepends an element to a list
 -}
 myReverse :: [a] -> [a]
@@ -139,7 +138,7 @@ pack (x : xs) =
 
 {- Problem 10
  Runs the "run-length" encoding data compression algorithm.
- Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E..
+ Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 -}
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode = map (\x -> (length x, head x)) . pack
