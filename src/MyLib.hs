@@ -23,7 +23,6 @@ module MyLib
     isPalindrome,
     isPrime,
     isSymmetricTree,
-    lastTwo,
     lfsort,
     lottoSelect,
     lsort,
@@ -42,6 +41,7 @@ module MyLib
     rndPermutations,
     rndSelect,
     rotate,
+    secondLast,
     slice,
     split,
     table,
@@ -64,12 +64,12 @@ myLast [x] = Just x
 myLast (_ : xs) = myLast $ tail xs
 
 {- Problem 2
- Find the last two (last and penultimate) elements of a list.
+ Find the second last element of a list.
 -}
-lastTwo :: [a] -> Maybe [a]
-lastTwo [] = Nothing
-lastTwo [x, y] = Just [x, y]
-lastTwo (_ : xs) = lastTwo xs
+secondLast :: [a] -> Maybe a
+secondLast [] = Nothing
+secondLast [x, _] = Just x
+secondLast (_ : xs) = secondLast xs
 
 {- Problem 3
  Find the nth element of a list. The first element in the list is number 1.
@@ -163,7 +163,7 @@ encodeModified =
     . encode
 
 {- Problem 12
- Runs the "run-length" encoding data compression algorithm.
+ Decode a run-length encoded list.
 -}
 decodeModified :: [Encoded a] -> [a]
 decodeModified [] = []

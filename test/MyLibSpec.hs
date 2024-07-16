@@ -27,7 +27,6 @@ import MyLib
     isPalindrome,
     isPrime,
     isSymmetricTree,
-    lastTwo,
     lfsort,
     lottoSelect,
     lsort,
@@ -46,6 +45,7 @@ import MyLib
     rndPermutations,
     rndSelect,
     rotate,
+    secondLast,
     slice,
     split,
     table,
@@ -62,10 +62,11 @@ spec = do
     myLast ["a"] `shouldBe` (Just "a" :: Maybe String)
     myLast [1, 2, 3] `shouldBe` (Just 3 :: Maybe Int)
 
-  it "[02] Should return the last two elements of a list" $ do
-    lastTwo [] `shouldBe` (Nothing :: Maybe [Bool])
-    lastTwo [True] `shouldBe` (Nothing :: Maybe [Bool])
-    lastTwo [1, 2, 3] `shouldBe` (Just [2, 3] :: Maybe [Int])
+  it "[02] Should return the second-last element of a list" $ do
+    secondLast [] `shouldBe` (Nothing :: Maybe Bool)
+    secondLast [True] `shouldBe` (Nothing :: Maybe Bool)
+    secondLast [1, 2, 3] `shouldBe` (Just 2 :: Maybe Int)
+    secondLast ['a'..'z'] `shouldBe` (Just 'y' :: Maybe Char)
 
   it "[03] Should return the nth element of a list" $ do
     elementAt (-2) [1, 2] `shouldBe` (Nothing :: Maybe Int)
